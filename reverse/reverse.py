@@ -44,99 +44,30 @@ class LinkedList:
             current = current.get_next()
 
         return False
-
-    def remove_tail(self):
-        if not self.head:
-            return None
-        
-        if self.head is self.tail:
-            value = self.head.get_value()
-            self.head = None
-            self.tail = None
-            self.length -= 1
-            return value
-        
-        current = self.head
-
-        while current.get_next() is not self.tail:
-            current = current.get_next()
-
-        value = self.tail.get_value()
-        self.tail = current
-        self.tail.next_node = None
-        self.length -= 1
-        return value
-
-    def add_to_tail(self, value):
-        new_node = Node(value, None)
-        if not self.head:
-            self.head = new_node
-            self.tail = new_node
-            self.length += 1
-        else:
-            self.tail.set_next(new_node)
-            self.tail = new_node
-            self.length += 1
-
-    def remove_head(self):
-        if not self.head:
-            return None
-        if not self.head.get_next():
-            head = self.head
-            self.head = None
-            self.tail = None
-            self.length -= 1
-            return head.get_value()
-        value = self.head.get_value()
-        self.head = self.head.get_next()
-        self.length -= 1
-        return value
-    
+  
     def print_links(self):
         current = self.head
         while current:
             print(current.value)
             current = current.get_next()
 
-# node, prev
-
-    def reverse_list(self):
-        pass
-        # if not self.head:
-        #     return self
-        # if self.head is self.tail:
-        #     return self
-        # if self:
-
-        # shuffle = LinkedList()
-        # if not self.head:
-        #     return shuffle.print_links()
-        # shuffle.add_to_head(self.head.value)
-        # self.remove_head()
-        # self.reverse_list()
-
-        # stopping condition if not self.head.get_next()
-        # swap head and tail
-        # print the whole linked list
-        # else 
+    def the_reversal(self, current, prev):
+        if not current.next_node:
+            self.head = current
+            current.next_node = prev
+            return self
+        nexty = current.next_node
+        current.next_node = prev
+        self.the_reversal(nexty, current)
 
 
-# while chachaslide.head:
-#     shuffle.add_to_head(chachaslide.head.value)
-#     chachaslide.remove_head()
-
-# shuffle.print_links()
-
-
-        # def the_reversal(ll):
-        #     if ll.tail is totheback:
-        #         return ll.print_links()
-        #     ll.add_to_head(ll.tail)
-        #     ll.remove_tail()
-        #     # shuffle = ll
-        # return the_reversal(ll)
+    def reverse_list(self, headr, noner):
+        if not self.head:
+            return self
+        if self.head is self.tail:
+            return self
+        self.the_reversal(self.head, None)
     
-
 chachaslide = LinkedList()
 chachaslide.add_to_head('clap5')
 chachaslide.add_to_head('clap4')
@@ -146,25 +77,5 @@ chachaslide.add_to_head('clap1')
 
 chachaslide.print_links()
 print('\n')
-
-newlist = LinkedList()
-while chachaslide.head:
-    newlist.add_to_head(chachaslide.head.value)
-    chachaslide.remove_head()
-
-newlist.print_links()
-print('\n')
-print(newlist.length)
-print('\n')
-
-newlist.reverse_list()
-
-# def factorial(n):
-#     if n == 1:
-#         return 1
-#     else:
-#         return n * factorial(n-1)
-
-# print(factorial(7))
-
-# chachaslide.print_links()
+chachaslide.reverse_list(None, None)
+chachaslide.print_links()
