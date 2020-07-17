@@ -108,19 +108,21 @@ class LinkedList:
         self.tail = current
         self.length -= 1
         return value
+    
+    def search(node):
+        if node.get_value() == value:
+            return True
+        if not node.get_next():
+            return False
+        return search(node.get_next())
+        return search(self.head)
 
     def contains(self, value):
         if not self.head:
             return False
 
         # Recursive solution
-        # def search(node):
-        #   if node.get_value() == value:
-        #     return True
-        #   if not node.get_next():
-        #     return False
-        #   return search(node.get_next())
-        # return search(self.head)
+
     
         # get a reference to the node we're currently at; update this as we traverse the list
         current = self.head
